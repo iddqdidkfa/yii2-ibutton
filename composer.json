@@ -1,0 +1,23 @@
+{
+    "name": "softcommerce/yii2-ibutton",
+    "description": "jQuery iButton library wrapper widget for Yii2 Framework",
+    "keywords": ["yii", "extension", "widget", "jquery", "iButton"],
+    "type": "yii2-extension",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Oleg Ilyushyn",
+            "email": "oleg@softcommerce.com.ua",
+            "homepage": "http://softcommerce.com.ua"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*",
+        "yiisoft/jquery": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "softcommerce\\ibutton\\": ""
+        }
+    }
+}
