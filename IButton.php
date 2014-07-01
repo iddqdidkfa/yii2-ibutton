@@ -28,27 +28,41 @@ class IButton extends Widget {
 
 	public function run()
 	{
-		switch($this->type) {
-			case 'checkbox':
-				if (!is_null($this->model)) {
-					$this->id = Html::getInputId($this->model, $this->attribute);
-					echo Html::activeCheckbox($this->model, $this->attribute, $this->options);
-				} else {
-					echo Html::checkbox($this->name, $this->checked, $this->options);
-				}
-				break;
-			case 'radio':
-				if (!is_null($this->model)) {
-					$this->id = Html::getInputId($this->model, $this->attribute);
-					echo Html::activeRadio($this->model, $this->attribute, $this->options);
-				} else {
-					echo Html::radio($this->name, $this->checked, $this->options);
-				}
-				break;
-			default:
-				throw new Exception('Invalid element type');
-		}
-		$this->register();
+        if (is_null($this->id)) {
+            if ($this->model instanceof Model) {
+                $this->id = Html::getInputId($this->model, $this->attribute);
+            } else {
+                $this->id = $this->getId();
+            }
+        }
+        if (is_null($this->name)) {
+            if ($this->model instanceof Model) {
+                $this->name = Html::getInputName($this->model, $this->attribute);
+            } else {
+                $this->name = $this->getId();
+            }
+        }
+        $this->options['id'] = $this->id;
+        $this->options['name'] = $this->name;
+        switch($this->type) {
+            case 'checkbox':
+                if ($this->model instanceof Model) {
+                    echo Html::activeCheckbox($this->model, $this->attribute, $this->options);
+                } else {
+                    echo Html::checkbox($this->name, $this->checked, $this->options);
+                }
+                break;
+            case 'radio':
+                if ($this->model instanceof Model) {
+                    echo Html::activeRadio($this->model, $this->attribute, $this->options);
+                } else {
+                    echo Html::radio($this->name, $this->checked, $this->options);
+                }
+                break;
+            default:
+                throw new Exception('Invalid element type');
+        }
+        $this->register();
 	}
 
 	protected function register()
