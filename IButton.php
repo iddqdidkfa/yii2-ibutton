@@ -4,6 +4,7 @@
 namespace softcommerce\ibutton;
 
 
+use yii\base\Model;
 use yii\base\Exception;
 use yii\base\Widget;
 use yii\helpers\Html;
