@@ -48,6 +48,7 @@ class IButton extends Widget {
         switch($this->type) {
             case 'checkbox':
                 if ($this->model instanceof Model) {
+                    $this->options['label'] = null;
                     echo Html::activeCheckbox($this->model, $this->attribute, $this->options);
                 } else {
                     echo Html::checkbox($this->name, $this->checked, $this->options);
@@ -55,6 +56,7 @@ class IButton extends Widget {
                 break;
             case 'radio':
                 if ($this->model instanceof Model) {
+                    $this->options['label'] = null;
                     echo Html::activeRadio($this->model, $this->attribute, $this->options);
                 } else {
                     echo Html::radio($this->name, $this->checked, $this->options);
